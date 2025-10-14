@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class CameraMovement : MonoBehaviour
 {
     public float sensX;
     public float sensY;
@@ -32,4 +32,3 @@ public class NewMonoBehaviourScript : MonoBehaviour
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 }
-
