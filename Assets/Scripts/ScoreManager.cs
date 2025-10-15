@@ -1,0 +1,138 @@
+using UnityEngine;
+using TMPro; // for TextMeshPro
+using System.Collections;
+using System.Collections.Generic;
+public class ScoreManager : MonoBehaviour
+{
+
+    public static ScoreManager instance;
+
+
+
+    [Header("UI References")]
+
+    public TextMeshProUGUI scoreText;
+
+    public TextMeshProUGUI timerText;
+
+    public TextMeshProUGUI gameOverText;
+
+
+
+    [Header("Game Settings")]
+
+    public int targetScore = 5;      // how many points needed to win
+
+    public float timeLimit = 30f;     // seconds before failure
+
+    private int score = 0;
+
+    private float timer;
+
+    private bool gameEnded = false;
+
+    void Awake()
+
+    {
+
+        if (instance == null)
+
+            instance = this;
+
+        else
+
+            Destroy(gameObject);
+
+    }
+
+    void Start()
+
+    {
+
+        timer = timeLimit;
+
+        UpdateScoreText();
+
+        UpdateTimerText();
+
+        gameOverText.gameObject.SetActive(false);
+
+    }
+
+    void Update()
+
+    {
+
+        if (gameEnded) return;
+
+        timer -= Time.deltaTime;
+
+        UpdateTimerText();
+
+        if (timer <= 0)
+
+        {
+            timer = 0;
+
+            GameOver(false);
+        }
+
+    }
+
+    public void AddScore(int points)
+
+    {
+
+        if (gameEnded) return;
+
+        score += points;
+
+        UpdateScoreText();
+
+        if (score >= targetScore)
+
+        {
+
+            GameOver(true);
+
+        }
+
+    }
+
+    void UpdateScoreText()
+
+    {
+
+        scoreText.text = "Score: " + score;
+
+    }
+
+    void UpdateTimerText()
+
+    {
+
+        timerText.text = "Time: " + Mathf.CeilToInt(timer);
+
+    }
+
+    void GameOver(bool won)
+
+    {
+
+        gameEnded = true;
+
+        gameOverText.gameObject.SetActive(true);
+
+
+
+        if (won)
+
+            gameOverText.text = "You Win!";
+
+        else
+
+            gameOverText.text = "Wasted";
+
+    }
+
+}

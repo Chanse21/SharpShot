@@ -89,6 +89,7 @@ public class Boomerang : MonoBehaviour
         if (collision.gameObject.CompareTag("Target"))
         {
             Destroy(collision.gameObject);
+            ScoreManager.instance.AddScore(1); // Add 1 Points (you can change this value)
         }
     }
 
