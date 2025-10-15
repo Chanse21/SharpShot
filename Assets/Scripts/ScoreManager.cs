@@ -2,6 +2,8 @@ using UnityEngine;
 using TMPro; // for TextMeshPro
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 public class ScoreManager : MonoBehaviour
 {
 
@@ -133,6 +135,14 @@ public class ScoreManager : MonoBehaviour
 
             gameOverText.text = "Wasted";
 
+        // Wait 3 seconds, then load RestartScene
+        Invoke("LoadRestartScene", 3f);
+
+    }
+
+    void LoadRestartScene()
+    {
+        SceneManager.LoadScene("Restart Game");
     }
 
 }
