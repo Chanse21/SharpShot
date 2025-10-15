@@ -83,4 +83,13 @@ public class Boomerang : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        //If the boomerang hits an object tagged as "Target"
+        if (collision.gameObject.CompareTag("Target"))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
 }
