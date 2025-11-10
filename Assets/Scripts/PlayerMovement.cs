@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
+    float health, maxHealth = 80f;
+    public FloatingHealthBar healthBar;
 
 
     void Start()
