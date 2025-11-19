@@ -107,7 +107,7 @@ public class Boomerang : MonoBehaviour
 
             {
 
-                ScoreManager.instance.AddScore(1); // Add points for defeating enemy
+                ScoreManager.instance.AddEnemyScore(1); // Add points for defeating enemy
 
             }
 

@@ -31,7 +31,9 @@ public class ScoreManager : MonoBehaviour
 
     private int score = 0;
 
-    private int enemyscore = 0;
+    public int enemyscore = 3;
+
+    private int enemy = 0;
 
     private float timer;
 
@@ -60,6 +62,8 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreText();
 
         UpdateTimerText();
+
+        UpdateEnemyScoreText();
 
         gameOverText.gameObject.SetActive(false);
 
@@ -113,11 +117,19 @@ public class ScoreManager : MonoBehaviour
 
 
 
-        enemyscore += points;
+        enemy += points;
 
          UpdateEnemyScoreText();
 
+        if (score >= enemyscore)
+
+        {
+
+            GameOver(true);
+
         }
+
+    }
 
            // Update the enemy score UI
 
@@ -125,9 +137,9 @@ public class ScoreManager : MonoBehaviour
 
         {
 
-         if (enemyscoreText != null)
+         //if (enemyscoreText != null)
 
-             enemyscoreText.text = "Enemies: " + enemyscore;
+             enemyscoreText.text = "Enemy: " + enemyscore;
 
         }
 
