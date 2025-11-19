@@ -3,43 +3,106 @@ using UnityEngine.UI; // Required for UI elements like Slider
 
 public class EnemyHealth : MonoBehaviour
 {
+
     public float maxHealth = 10f;
+
     public float currentHealth;
-    public GameObject healthBarUI; // Reference to the Canvas holding the health bar
-    public Slider healthSlider; // Reference to the Slider component
+
+
+
+    [Header("UI")]
+
+    public GameObject healthBarUI; // Canvas object
+
+    public Slider healthSlider; // Slider component
+
+
+
+    [Header("UI Smoothness")]
+
+    public float smoothSpeed = 5f; // Higher = faster bar update
+
+
+
+    private float displayedHealth; // The health shown on the slider
+
+
 
     void Start()
+
     {
+
         currentHealth = maxHealth;
-        UpdateHealthBar();
-        //healthBarUI.SetActive(false); // Hide health bar initially
+
+
+
+        // Auto-find slider if not assigned
+
+        if (healthSlider == null && healthBarUI != null)
+
+            healthSlider = healthBarUI.GetComponentInChildren<Slider>();
+
+
+
+        if (healthSlider != null)
+
+        {
+
+            healthSlider.maxValue = maxHealth;
+
+            healthSlider.value = maxHealth;
+
+        }
+
+
+
+        displayedHealth = currentHealth;
+
     }
+
+
+
+    void Update()
+
+    {
+
+        // Smoothly interpolate displayedHealth to currentHealth
+
+        if (healthSlider != null)
+
+        {
+
+            displayedHealth = Mathf.Lerp(displayedHealth, currentHealth, Time.deltaTime * smoothSpeed);
+
+            healthSlider.value = displayedHealth;
+
+        }
+
+    }
+
+
 
     public void TakeDamage(float damage)
-    {
-        currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Ensure health stays within bounds
 
-        UpdateHealthBar();
-        healthBarUI.SetActive(true); // Show health bar when damaged
+    {
+
+        currentHealth -= damage;
+
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+
 
         if (currentHealth <= 0)
+
         {
-            Die();
+
+            if (healthBarUI != null) healthBarUI.SetActive(false);
+            ScoreManager.instance.AddEnemyScore(1);
+
+            Destroy(gameObject);
+
         }
+
     }
 
-    void UpdateHealthBar()
-    {
-        if (healthSlider != null)
-        {
-            healthSlider.value = currentHealth / maxHealth;
-        }
-    }
-
-    void Die()
-    {
-        // Implement enemy death logic here (e.g., play animation, destroy GameObject)
-        Destroy(gameObject);
-    }
 }

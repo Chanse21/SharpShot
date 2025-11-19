@@ -15,6 +15,8 @@ public class ScoreManager : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
 
+    public TextMeshProUGUI enemyscoreText;
+
     public TextMeshProUGUI timerText;
 
     public TextMeshProUGUI gameOverText;
@@ -28,6 +30,8 @@ public class ScoreManager : MonoBehaviour
     public float timeLimit = 30f;     // seconds before failure
 
     private int score = 0;
+
+    private int enemyscore = 0;
 
     private float timer;
 
@@ -100,6 +104,32 @@ public class ScoreManager : MonoBehaviour
         }
 
     }
+
+    public void AddEnemyScore(int points)
+
+        {
+
+        if (gameEnded) return;
+
+
+
+        enemyscore += points;
+
+         UpdateEnemyScoreText();
+
+        }
+
+           // Update the enemy score UI
+
+        void UpdateEnemyScoreText()
+
+        {
+
+         if (enemyscoreText != null)
+
+             enemyscoreText.text = "Enemies: " + enemyscore;
+
+        }
 
     void UpdateScoreText()
 

@@ -75,7 +75,7 @@ public class Boomerang : MonoBehaviour
 
             {
 
-                Destroy(gameObject); // Destroy instead of SetActive(false)
+                Destroy(gameObject);
 
             }
 
@@ -83,14 +83,54 @@ public class Boomerang : MonoBehaviour
 
     }
 
+
+
     private void OnCollisionEnter(Collision collision)
+
     {
-        //If the boomerang hits an object tagged as "Target"
-        if (collision.gameObject.CompareTag("Target"))
+
+        // 1. Check if it hit an enemy
+
+        EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
+
+        if (enemy != null)
+
         {
-            Destroy(collision.gameObject);
-            ScoreManager.instance.AddScore(1); // Add 1 Points (you can change this value)
+
+            enemy.TakeDamage(2f); // Apply damage
+
+
+
+            // Check if enemy is dead now
+
+            if (enemy.currentHealth <= 0)
+
+            {
+
+                ScoreManager.instance.AddScore(1); // Add points for defeating enemy
+
+            }
+
+
+
+            return; // Stop here so we don’t also check "Target"
+
         }
+
+
+
+        // 2. Check if it hit a Target object
+
+        if (collision.gameObject.CompareTag("Target"))
+
+        {
+
+            Destroy(collision.gameObject);
+
+            ScoreManager.instance.AddScore(1); // Add points for target
+
+        }
+
     }
 
 }
