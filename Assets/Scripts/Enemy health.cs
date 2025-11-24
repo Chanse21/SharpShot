@@ -4,27 +4,29 @@ using UnityEngine.UI; // Required for UI elements like Slider
 public class EnemyHealth : MonoBehaviour
 {
 
+    [Header("Health Settings")]
+
     public float maxHealth = 10f;
 
-    public float currentHealth;
+    [HideInInspector] public float currentHealth;
 
 
 
     [Header("UI")]
 
-    public GameObject healthBarUI; // Canvas object
+    public GameObject healthBarUI; // Canvas for health bar
 
-    public Slider healthSlider; // Slider component
-
-
-
-    [Header("UI Smoothness")]
-
-    public float smoothSpeed = 5f; // Higher = faster bar update
+    public Slider healthSlider;
 
 
 
-    private float displayedHealth; // The health shown on the slider
+    [Header("UI Smoothing")]
+
+    public float smoothSpeed = 5f;
+
+
+
+    private float displayedHealth;
 
 
 
@@ -35,8 +37,6 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
 
 
-
-        // Auto-find slider if not assigned
 
         if (healthSlider == null && healthBarUI != null)
 
@@ -66,8 +66,6 @@ public class EnemyHealth : MonoBehaviour
 
     {
 
-        // Smoothly interpolate displayedHealth to currentHealth
-
         if (healthSlider != null)
 
         {
@@ -92,16 +90,35 @@ public class EnemyHealth : MonoBehaviour
 
 
 
+        Debug.Log(gameObject.name + " TakeDamage called. CurrentHealth: " + currentHealth);
+
+
+
         if (currentHealth <= 0)
 
-        {
+            HandleDeath();
 
-            if (healthBarUI != null) healthBarUI.SetActive(false);
-            ScoreManager.instance.AddEnemyScore(1);
+    }
 
-            Destroy(gameObject);
 
-        }
+
+    private void HandleDeath()
+
+    {
+
+        Debug.Log(gameObject.name + " died → adding enemy score");
+
+        if (healthBarUI != null)
+
+            healthBarUI.SetActive(false);
+
+
+
+        ScoreManager.instance.AddEnemyScore(1);
+
+
+
+        Destroy(gameObject);
 
     }
 

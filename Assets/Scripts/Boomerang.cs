@@ -33,6 +33,22 @@ public class Boomerang : MonoBehaviour
 
         initialPosition = transform.position;
 
+
+
+        // Automatically find player in scene
+
+        if (playerTransform == null)
+
+        {
+
+            GameObject playerObj = GameObject.FindWithTag("Player");
+
+            if (playerObj != null)
+
+                playerTransform = playerObj.transform;
+
+        }
+
     }
 
 
@@ -45,15 +61,9 @@ public class Boomerang : MonoBehaviour
 
         {
 
-            // Check if max distance reached
-
             if (Vector3.Distance(initialPosition, transform.position) >= maxDistance)
 
-            {
-
                 returning = true;
-
-            }
 
         }
 
@@ -61,21 +71,19 @@ public class Boomerang : MonoBehaviour
 
         {
 
-            // Move back toward player
-
-            Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
-
-            rb.linearVelocity = directionToPlayer * returnSpeed;
-
-
-
-            // Destroy boomerang when close to player
-
-            if (Vector3.Distance(playerTransform.position, transform.position) < 1f)
+            if (playerTransform != null)
 
             {
 
-                Destroy(gameObject);
+                Vector3 dir = (playerTransform.position - transform.position).normalized;
+
+                rb.linearVelocity = dir * returnSpeed;
+
+
+
+                if (Vector3.Distance(playerTransform.position, transform.position) < 1f)
+
+                    Destroy(gameObject);
 
             }
 
@@ -89,7 +97,7 @@ public class Boomerang : MonoBehaviour
 
     {
 
-        // 1. Check if it hit an enemy
+        // Damage enemy only
 
         EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
 
@@ -97,29 +105,15 @@ public class Boomerang : MonoBehaviour
 
         {
 
-            enemy.TakeDamage(2f); // Apply damage
+            enemy.TakeDamage(2f);
 
-
-
-            // Check if enemy is dead now
-
-            if (enemy.currentHealth <= 0)
-
-            {
-
-                ScoreManager.instance.AddEnemyScore(1); // Add points for defeating enemy
-
-            }
-
-
-
-            return; // Stop here so we don’t also check "Target"
+            return;
 
         }
 
 
 
-        // 2. Check if it hit a Target object
+        // Score targets
 
         if (collision.gameObject.CompareTag("Target"))
 
@@ -127,7 +121,7 @@ public class Boomerang : MonoBehaviour
 
             Destroy(collision.gameObject);
 
-            ScoreManager.instance.AddScore(1); // Add points for target
+            ScoreManager.instance.AddScore(1);
 
         }
 

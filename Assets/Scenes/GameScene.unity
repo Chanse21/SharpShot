@@ -2438,7 +2438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currentHealth: 0
+  currentHealth: 10
   healthBarUI: {fileID: 1684636782}
   healthSlider: {fileID: 1920671728}
   smoothSpeed: 5
@@ -3116,7 +3116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currentHealth: 0
+  currentHealth: 10
   healthBarUI: {fileID: 1779547028}
   healthSlider: {fileID: 2125820425}
   smoothSpeed: 5
@@ -5681,7 +5681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currentHealth: 0
+  currentHealth: 10
   healthBarUI: {fileID: 482561442}
   healthSlider: {fileID: 406780960}
   smoothSpeed: 5
@@ -7571,8 +7571,10 @@ MonoBehaviour:
   timerText: {fileID: 473112570}
   gameOverText: {fileID: 776233614}
   targetScore: 6
+  enemyscoreGoal: 3
   timeLimit: 60
-  enemyscore: 3
+  score: 0
+  enemy: 0
 --- !u!4 &2039164870
 Transform:
   m_ObjectHideFlags: 0
