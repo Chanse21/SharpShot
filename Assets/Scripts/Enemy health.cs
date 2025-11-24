@@ -113,7 +113,7 @@ public class EnemyHealth : MonoBehaviour
             healthBarUI.SetActive(false);
 
 
-
+        print("Test");
         ScoreManager.instance.AddEnemyScore(1);
 
 

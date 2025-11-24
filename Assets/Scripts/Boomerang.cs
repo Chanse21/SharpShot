@@ -96,6 +96,7 @@ public class Boomerang : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
 
     {
+        Debug.Log("Boomerang hit: " + collision.gameObject.name);
 
         // Damage enemy only
 
@@ -104,9 +105,9 @@ public class Boomerang : MonoBehaviour
         if (enemy != null)
 
         {
-
+            Debug.Log("EnemyHealth found: " + enemy.gameObject.name);
             enemy.TakeDamage(2f);
-
+            Debug.Log("After TakeDamage, enemy currentHealth: " + enemy.currentHealth);
             return;
 
         }

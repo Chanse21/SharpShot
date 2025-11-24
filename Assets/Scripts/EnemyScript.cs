@@ -27,18 +27,21 @@ public class Enemy : MonoBehaviour
 
 
 
-    private void OnCollisionEnter(Collision collision)
+   // private void OnCollisionEnter(Collision collision)
 
-    {
+   // {
 
-        if (collision.gameObject.CompareTag("Boomerang"))
+      //  if (collision.gameObject.CompareTag("Boomerang"))
+      
+       // {
+           // EnemyHealth health = GetComponent<EnemyHealth>();
+         // if (health != null)
+           // {
+           //     health.TakeDamage(2);
+          //  }
 
-        {
+       // }
 
-            Destroy(gameObject);
-
-        }
-
-    }
+    //}
 
 }
