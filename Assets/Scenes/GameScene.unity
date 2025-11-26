@@ -1153,7 +1153,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3521,8 +3521,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -10, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: -79.60231, y: 0}
+  m_SizeDelta: {x: -0.1977, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &663073294
 GameObject:
@@ -6183,8 +6183,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 79.92378, y: 0.10000038}
-  m_SizeDelta: {x: 161.0475, y: 0}
+  m_AnchoredPosition: {x: 80.51961, y: 0.05000019}
+  m_SizeDelta: {x: 2.5604, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1719785487
 MonoBehaviour:
