@@ -8,12 +8,8 @@ public class FloatingHealthBar : MonoBehaviour
     public Slider slider;
     public void UpdateHealthBar(float currentValue, float maxValue)
     {
+        if (slider != null)
         slider.value = currentValue / maxValue;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
