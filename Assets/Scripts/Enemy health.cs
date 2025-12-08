@@ -28,6 +28,8 @@ public class EnemyHealth : MonoBehaviour
 
     private float displayedHealth;
 
+    private bool isDead = false;
+
 
 
     void Start()
@@ -83,7 +85,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
 
     {
-
+        if (isDead) return; // prevent duplicate death calls
         currentHealth -= damage;
 
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
@@ -105,6 +107,8 @@ public class EnemyHealth : MonoBehaviour
     private void HandleDeath()
 
     {
+        if (isDead) return; // make 100% sure
+        isDead = true;
 
         Debug.Log(gameObject.name + " died → adding enemy score");
 

@@ -106,7 +106,7 @@ public class Boomerang : MonoBehaviour
 
         {
             Debug.Log("EnemyHealth found: " + enemy.gameObject.name);
-            enemy.TakeDamage(2f);
+            enemy.TakeDamage(.5f);
             Debug.Log("After TakeDamage, enemy currentHealth: " + enemy.currentHealth);
             return;
 

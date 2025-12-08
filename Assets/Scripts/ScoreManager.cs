@@ -199,6 +199,12 @@ public class ScoreManager : MonoBehaviour
 
     }
 
+    public void ForceGameOverOnPlayerDeath()
+    {
+        if (gameEnded) return;
+        GameOver(false); //player loses
+    }
+
 
 
     void LoadRestartScene()

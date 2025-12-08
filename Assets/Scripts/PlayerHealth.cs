@@ -64,9 +64,13 @@ public class PlayerHealth : MonoBehaviour
     {
 
         Debug.Log("PLAYER DIED");
+        //Trigger game over logic from ScoreManager
+        if (ScoreManager.instance != null)
+            ScoreManager.instance.ForceGameOverOnPlayerDeath();
+         Destroy(gameObject);
 
         // add respawn, game over, etc.
 
-    }
+    } 
 
 }
