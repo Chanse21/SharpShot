@@ -20,6 +20,7 @@ public class Boomerang : MonoBehaviour
     private Vector3 initialPosition;
 
     private bool returning = false;
+    public PlayerThrow thrower;
 
 
 
@@ -82,8 +83,12 @@ public class Boomerang : MonoBehaviour
 
 
                 if (Vector3.Distance(playerTransform.position, transform.position) < 1f)
+                {
+                    if (thrower != null)
+                        thrower.hasBoomerangOut = false;
 
                     Destroy(gameObject);
+                }
 
             }
 

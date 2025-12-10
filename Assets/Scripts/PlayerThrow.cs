@@ -10,6 +10,7 @@ public class PlayerThrow : MonoBehaviour
     public Transform cameraTransform;
 
     public float spawnOffset = 1f;
+    public bool hasBoomerangOut = false;
 
     void Update()
     {
@@ -21,6 +22,12 @@ public class PlayerThrow : MonoBehaviour
 
     void ThrowBoomerang()
     {
+        //stop if boomerang is already out
+        if (hasBoomerangOut)
+            return;
+
+        //mark that a boomerang is now active
+        hasBoomerangOut = true;
 
         if (cameraTransform == null) return; // safety check
 
@@ -57,7 +64,8 @@ public class PlayerThrow : MonoBehaviour
         {
 
             boomerangScript.playerTransform = transform;
-
+            //give boomerang a reference back to this thrower
+            boomerangScript.thrower = this;
         }
 
     }

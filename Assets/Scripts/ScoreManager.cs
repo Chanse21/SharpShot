@@ -135,7 +135,7 @@ public class ScoreManager : MonoBehaviour
 
 
 
-        if (enemy >= enemyscoreGoal) GameOver(true);
+        //if (enemy >= enemyscoreGoal) GameOver(true);
 
     }
 
