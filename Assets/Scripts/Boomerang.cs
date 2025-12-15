@@ -17,23 +17,21 @@ public class Boomerang : MonoBehaviour
 
     private Rigidbody rb;
 
-    private Vector3 initialPosition;
+    private Vector3 playerPosition;
 
     private bool returning = false;
     public PlayerThrow thrower;
 
 
-
     void Start()
 
     {
-
         rb = GetComponent<Rigidbody>();
 
         rb.linearVelocity = transform.forward * throwSpeed;
 
-        initialPosition = transform.position;
-
+        playerPosition = transform.position;
+        
 
 
         // Automatically find player in scene
@@ -62,7 +60,7 @@ public class Boomerang : MonoBehaviour
 
         {
 
-            if (Vector3.Distance(initialPosition, transform.position) >= maxDistance)
+            if (Vector3.Distance(playerTransform.position, transform.position) >= maxDistance)
 
                 returning = true;
 
