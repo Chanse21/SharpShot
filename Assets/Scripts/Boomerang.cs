@@ -22,6 +22,12 @@ public class Boomerang : MonoBehaviour
     private bool returning = false;
     public PlayerThrow thrower;
 
+    public AudioClip enemyHitSound;
+
+    public AudioClip targetHitSound;
+
+    private AudioSource audioSource;
+
 
     void Start()
 
@@ -31,6 +37,8 @@ public class Boomerang : MonoBehaviour
         rb.linearVelocity = transform.forward * throwSpeed;
 
         playerPosition = transform.position;
+
+        audioSource = GetComponent<AudioSource>();
         
 
 
@@ -110,6 +118,8 @@ public class Boomerang : MonoBehaviour
         {
             Debug.Log("EnemyHealth found: " + enemy.gameObject.name);
             enemy.TakeDamage(.5f);
+            if (audioSource && enemyHitSound)
+                audioSource.PlayOneShot(enemyHitSound);
             Debug.Log("After TakeDamage, enemy currentHealth: " + enemy.currentHealth);
             return;
 
@@ -122,6 +132,8 @@ public class Boomerang : MonoBehaviour
         if (collision.gameObject.CompareTag("Target"))
 
         {
+             if (audioSource && targetHitSound)
+                audioSource.PlayOneShot(targetHitSound);
 
             Destroy(collision.gameObject);
 

@@ -11,6 +11,9 @@ public class PlayerHealth : MonoBehaviour
 
     public FloatingHealthBar healthBar;  // reference to your UI script
 
+    public AudioClip hitSound;
+    private AudioSource audioSource;
+
 
 
     void Start()
@@ -18,6 +21,8 @@ public class PlayerHealth : MonoBehaviour
     {
 
         currentHealth = maxHealth;
+
+        audioSource = GetComponent<AudioSource>();
 
 
 
@@ -44,6 +49,9 @@ public class PlayerHealth : MonoBehaviour
         if (healthBar != null)
 
             healthBar.UpdateHealthBar(currentHealth, maxHealth);
+
+        if (audioSource && hitSound)
+            audioSource.PlayOneShot(hitSound);
 
 
 

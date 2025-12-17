@@ -155,6 +155,8 @@ MonoBehaviour:
   maxDistance: 5
   playerTransform: {fileID: 0}
   thrower: {fileID: 0}
+  enemyHitSound: {fileID: 8300000, guid: 45d8cb3379d934f94ba6437ee141a6bf, type: 3}
+  targetHitSound: {fileID: 8300000, guid: ce70ebe2e18e6409a8d692054e254244, type: 3}
 --- !u!82 &-941733256568205140
 AudioSource:
   m_ObjectHideFlags: 0

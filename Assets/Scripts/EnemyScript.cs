@@ -22,6 +22,16 @@ public class Enemy : MonoBehaviour
 
     private float nextFireTime = 0f;    // Timer for when enemy can shoot again
 
+    public AudioClip shootSound;
+
+    private AudioSource audioSource;
+
+
+    void Start()
+    {
+         audioSource = GetComponent<AudioSource>();
+    }
+
 
 
     void Update()
@@ -77,6 +87,8 @@ public class Enemy : MonoBehaviour
         if (bulletPrefab != null && shootPoint != null)
 
         {
+            if (audioSource && shootSound)
+            audioSource.PlayOneShot(shootSound);
 
             Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
 

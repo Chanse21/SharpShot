@@ -12,6 +12,15 @@ public class PlayerThrow : MonoBehaviour
     public float spawnOffset = 1f;
     public bool hasBoomerangOut = false;
 
+    public AudioClip boomerangThrowSound;
+
+    private AudioSource audioSource;
+
+    void Start()
+    {
+         audioSource = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) // Space button
@@ -36,6 +45,9 @@ public class PlayerThrow : MonoBehaviour
         Vector3 spawnPosition = cameraTransform.position + cameraTransform.forward * spawnOffset;
 
         Quaternion spawnRotation = Quaternion.LookRotation(cameraTransform.forward); // point in camera's direction
+
+        if (audioSource && boomerangThrowSound)
+            audioSource.PlayOneShot(boomerangThrowSound);
 
         GameObject newBoomerang = Instantiate(BoomerangPrefab, spawnPosition, spawnRotation);
 
